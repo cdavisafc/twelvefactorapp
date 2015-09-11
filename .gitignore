@@ -25,4 +25,4 @@ target/
 .gradle
 build/
 
-*.log*
+*.log*twelvefactorapp.iml
