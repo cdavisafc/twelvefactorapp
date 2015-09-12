@@ -1,7 +1,7 @@
 package hello;
 
-import hello.service.GreetingService;
 import hello.domain.Greeting;
+import hello.service.GreetingService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

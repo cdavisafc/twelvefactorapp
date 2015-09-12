@@ -40,11 +40,9 @@ dependencies {
     // end::actuator[]
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.flywaydb:flyway-core")
-
     compile ("org.springframework.cloud:spring-cloud-spring-service-connector")
     compile ("org.springframework.cloud:spring-cloud-cloudfoundry-connector")
     runtime ('mysql:mysql-connector-java:5.1.25')
-
     testCompile("junit:junit")
 }
 
