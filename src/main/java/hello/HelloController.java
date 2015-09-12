@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
 import java.time.Instant;
 
 @RestController
@@ -27,7 +26,7 @@ public class HelloController {
     public String index(@RequestParam(value = "person") String person) {
         log.debug("I intend to greet " + person);
         Greeting greeting = greetingService.saveGreeting(
-                new Greeting(person, Date.from(Instant.now())));
+                new Greeting(person, Instant.now().getEpochSecond()));
         return greeting.toString();
     }
 

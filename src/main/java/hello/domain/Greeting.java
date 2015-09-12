@@ -1,7 +1,6 @@
 package hello.domain;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Greeting {
@@ -12,7 +11,7 @@ public class Greeting {
     private String firstName;
 
     @Column(nullable = false)
-    private Date date;
+    private long date;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,7 +19,7 @@ public class Greeting {
 
     protected Greeting() {}
 
-    public Greeting(String firstName, Date date) {
+    public Greeting(String firstName, long date) {
         this.firstName = firstName;
         this.date = date;
     }
@@ -33,11 +32,11 @@ public class Greeting {
         this.firstName = firstName;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
