@@ -24,10 +24,10 @@ public class HelloController {
     }
 
     @RequestMapping("/")
-    public String index(@RequestParam(value = "person", required = false) String person) {
-        if ( null == person || person.equals("")) {
-            person = "nobody";
-        }
+    public String index(
+        @RequestParam(value = "person", required=false, defaultValue="nobody")
+            String person)
+    {
         log.debug("I intend to greet " + person);
         Greeting greeting = greetingService.saveGreeting(
                 new Greeting(person, Date.from(Instant.now())));
