@@ -8,15 +8,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
 
 import java.time.Instant;
 
 @RestController
-public class HelloController {
+public class HelloController implements EnvironmentAware {
     private static Logger log = Logger.getLogger(HelloController.class);
 
     private GreetingService greetingService;
 
+	private String ip;
+	private String ports;
+	
+	@Override
+	public void setEnvironment(Environment environment) {
+		this.ip = environment.getProperty("CF_INSTANCE_IP");
+		this.ports = environment.getProperty("CF_INSTANCE_PORTS");
+	}
+	
     @Autowired
     public HelloController(GreetingService greetingService) {
         this.greetingService = greetingService;
@@ -31,7 +42,7 @@ public class HelloController {
         log.debug("I intend to greet " + person);
         Greeting greeting = greetingService.saveGreeting(
                 new Greeting(person, Instant.now().getEpochSecond()));
-        return greeting.toString();
+        return greeting.toString() + " From ip " + ip + " and ports " + ports;
     }
 
     @RequestMapping("/history")
