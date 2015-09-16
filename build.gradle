@@ -7,45 +7,43 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'spring-boot'
 
-jar {
-    baseName = 'twelvefactor'
-    version =  '0.1.0'
-}
-
-repositories {
-    mavenCentral()
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-configurations {
-    providedRuntime
-}
-
-dependencies {
-    // tag::jetty[]
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
+    repositories {
+        mavenCentral()
     }
-    compile("org.springframework.boot:spring-boot-starter-jetty")
-    // end::jetty[]
-    // tag::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-actuator")
-    // end::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.flywaydb:flyway-core")
-    compile ("org.springframework.cloud:spring-cloud-spring-service-connector")
-    compile ("org.springframework.cloud:spring-cloud-cloudfoundry-connector")
-    runtime ('mysql:mysql-connector-java:5.1.25')
-    testCompile("junit:junit")
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    configurations {
+        providedRuntime
+    }
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web") {
+            exclude module: "spring-boot-starter-tomcat"
+        }
+        compile("org.springframework.boot:spring-boot-starter-jetty")
+        compile("org.springframework.boot:spring-boot-starter-actuator")
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile ("org.springframework.cloud:spring-cloud-spring-service-connector")
+        compile ("org.springframework.cloud:spring-cloud-cloudfoundry-connector")
+        runtime ('mysql:mysql-connector-java:5.1.25')
+    }
+
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+
+project(':admin') {}
+
+project(':app') {}
+

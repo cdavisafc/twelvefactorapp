@@ -1,0 +1,5 @@
+jar {
+    baseName = 'twelvefactor'
+    version =  '0.1.0'
+}
+

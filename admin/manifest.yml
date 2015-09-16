@@ -1,0 +1,8 @@
+---
+applications:
+- name: hello-spring-one-admin
+  memory: 1G
+  path: build/libs/twelvefactoradmin-0.1.0.jar
+  random-route: true
+  services:
+   - hellodb

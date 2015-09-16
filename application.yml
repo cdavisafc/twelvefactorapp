@@ -1,4 +1,0 @@
-logging:
-  level:
-    org.springframework: ${SPRING_LOG_LEVEL:INFO}
-    hello: ${LOG_LEVEL:INFO}
