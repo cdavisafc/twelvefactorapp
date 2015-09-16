@@ -49,4 +49,11 @@ public class HelloController implements EnvironmentAware {
     public @ResponseBody Iterable<Greeting> greetingList() {
         return greetingService.getGreetings();
     }
+
+    @RequestMapping("/broken")
+    public String broken() {
+        log.debug("Huh Oh");
+		System.exit(1);
+        return "won't get here";
+    }
 }
